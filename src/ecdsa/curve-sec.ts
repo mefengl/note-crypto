@@ -1,3 +1,32 @@
+/**
+ * SECG (Standards for Efficient Cryptography Group) 标准椭圆曲线定义
+ * 
+ * 本文件定义了多条由 SECG 标准化的椭圆曲线参数。
+ * 这些曲线广泛应用于各种密码学场景，特别是 ECDSA 数字签名。
+ * 
+ * 每条曲线都通过其实例化的 `ECDSANamedCurve` 类表示，包含了以下关键参数：
+ * - p: 有限域的模数 (Prime modulus of the underlying finite field)
+ * - a, b: 曲线方程 y² = x³ + ax + b 的系数 (Coefficients of the curve equation)
+ * - gx, gy: 基点 G 的仿射坐标 (Affine coordinates (x, y) of the base point G)
+ * - n: 基点 G 的阶 (Order of the base point G)
+ * - h: 余因子 (Cofactor)
+ * - size: 曲线参数的字节长度 (Size of curve parameters in bytes)
+ * - oid: 对象标识符 (Object Identifier - OID)
+ * 
+ * 本文件包含以下曲线：
+ * - Koblitz 曲线 (以 'k1' 结尾): 具有特定结构，有时可实现更高效的运算。
+ *   - secp192k1
+ *   - secp224k1
+ *   - secp256k1 (在比特币和以太坊中广泛使用)
+ * - 随机曲线 (以 'r1' 结尾): 参数看似随机生成。
+ *   - secp192r1 (等同于 NIST P-192)
+ *   - secp224r1 (等同于 NIST P-224)
+ *   - secp256r1 (等同于 NIST P-256, 非常常用)
+ *   - secp384r1 (等同于 NIST P-384)
+ *   - secp521r1 (等同于 NIST P-521)
+ * 
+ * 这些参数都是标准的、公开的数值，确保了不同实现之间的互操作性。
+ */
 import { ECDSANamedCurve } from "./curve.js";
 
 export const secp192k1 = new ECDSANamedCurve(
